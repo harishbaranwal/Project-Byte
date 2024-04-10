@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../stylesheets/apply.css">
+    <title>ByteTabs | Apply Now</title>
+
+    <link rel="icon" type="png" href="../images/logo1.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+    <div class="container">
+
+        <div class="apply_box">
+            <div class="logo-details">
+                <img src="../images/logo1.jpg" alt="">
+                <span class="logo_name">ByteTabs</span>
+            </div>
+
+
+            <!-- Start Order Details -->
+            <div class="order-details" d="subscriptionDetails">
+                <h2></h2>
+                <div class="order-total">
+                    <span></span>
+                    <span></span>
+                </div>
+                <button id="showOrderDetails">Show Requirements</button>
+                <ul>
+                    <li>Unlimited access to com</li>
+                    <li>Year-round Vogue Runway coverage</li>
+                    <li>A limited-edition Vogue tote and calendar</li>
+                    <li>The latest fashion news, celebrity style, and more</li>
+                </ul>
+
+                <button id="hideOrderDetails" style="display: none;">Hide Requirements</button>
+            </div>
+            <!-- End Order Details -->
+
+
+            <form method="POST" action="/form_submitted" name="RegForm" class="form" enctype="multipart/form-data"  onsubmit="return FormValidation(event)" >
+                <div class="form_container">
+                    <div class="form_control">
+                        <label for="first_name">First name</label>
+                        <input id="first_name" name="first_name" placeholder="Enter your first name"  />
+                        <span class="error-message" id="first_name_error"></span>
+                    </div>
+                    <div class="form_control">
+                        <label for="last_name">Last name</label>
+                        <input id="last_name" name="last_name" placeholder="Enter your Last name"  />
+                        <span class="error-message" id="last_name_error"></span>
+                    </div>
+                    <div class="form_control">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your Email.."  />
+                        <span class="error-message" id="email_error"></span>
+                    </div>
+                    <div class="form_control">
+                        <label for="phone">Your Phone No.</label>
+                        <input type="number" id="phone" name="phone" placeholder="Enter your Mobile No."  />
+                        <span class="error-message" id="phone_error"></span>
+                    </div>
+                    <div class="form_control">
+                        <label for="job_rol">Your Job Role</label>
+                        <select name="job_rol" id="job_rol">
+                            <option value="" disabled selected hidden>Choose your job role</option>
+                            <option value="frontend">Front-end developer</option>
+                            <option value="backend">Back-end developer</option>
+                            <option value="full_stack">Full Stack developer</option>
+                            <option value="ui_ux">UI - UX developer</option>
+                        </select>
+                        <span class="error-message" id="job_error"></span>
+                    </div>
+                    <div class="form_control">
+                        <label for="link">Your Portfolio link</label>
+                        <input type="link" id="link" name="link" placeholder="Enter your Portfolio link.."  />
+                        <span class="error-message" id="link_error"></span>
+                    </div>
+                    <div class="textarea_control">
+                        <label for="address">Your Address</label>
+                        <textarea type="text" id="address" name="address" placeholder="Enter your Address.." rows="4"
+                            cols="50"></textarea>
+                            <span class="error-message" id="address_error"></span>
+                    </div>
+                    <div class="form_control">
+                        <label for="city">Your City</label>
+                        <input type="text" id="city" name="city" placeholder="Enter your City (Town).."  />
+                        <span class="error-message" id="city_error"></span>
+                    </div>
+                    <div class="form_control">
+                        <label for="pin">Pin Code</label>
+                        <input type="number" id="pin" name="pin" placeholder="Enter your Pin Code.." 
+                             />
+                            <span class="error-message" id="pin_error"></span>
+                    </div>
+                    <div class="form_control">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date"   />
+                        <span class="error-message" id="date_error"></span>
+                    </div>
+                    <div class="form_control">
+                        <label for="files">Upload your C.V.</label>
+                  
+                            <input id="files" type="file" name="file" />
+                        <!-- <output id="result" /> -->
+                        <span class="error-message" id="file_error"></span>
+                    </div>
+                </div>
+                <div class="button_container">
+                    <button type="submit">Apply Now</button>
+                </div>
+                <div id="success_message" style="display: none;">
+                    Form submitted successfully!
+                  </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../javascripts/apply.js"></script>
+</body>
+
+</html>
