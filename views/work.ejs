@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>ByteTabs | Blog</title>
+  <link rel="icon" type="png" href="../images/logo1.jpg">
+  <link rel="stylesheet" href="../stylesheets/abc.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">
+  
+
+</head>
+
+<body>
+  <!-- Start First Section -->
+  <div class="first-section">
+    <!-- Start Nav Bar -->
+    <nav>
+      <ul>
+        <!-- Start Logo Part-->
+        <li class="logo">
+          <img src="../images/logo1.jpg" alt="">
+          <span>Byte</span>Tabs
+        </li>
+        <!-- End Logo Part -->
+
+        <!-- Start Navbar Content -->
+        <div class="items">
+          <li><a href="../index">Home</a></li>
+          <li><a href="/hire">Hiring</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+          <!-- Start Navbar Content SideNavbar Open with Hamburger -->
+          <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="../index">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/service">Services</a>
+            <a href="/blog">Blog</a>
+            <a href="/hire">Hiring</a>
+            <a href="/contact">Contact Us</a>
+          </div>
+          <!-- End Navbar Content SideNavbar Open with Hamburger -->
+
+          <!-- Hamburger For Small Screen-->
+          <li class="btn hamburger"><span class="fas fa-bars"></span></li>
+        </div>
+        <!-- ENd Navbar Content -->
+      </ul>
+    </nav>
+    <!-- End Nav Bar -->
+  </div>
+  <!-- End First Section -->
+
+
+
+
+
+
+
+  <div class="img-container"></div>
+
+
+  <div class="main-container">
+
+    <div class="product-container">
+
+        <div class="underline">
+            <h1><%= title %></h1>
+        </div>
+        <p><%= description %></p>
+    </div>
+
+    <div class="right-container">
+
+        <div class="service">
+            <h4>SERVICES</h4>
+            <div class="service-box">
+                <div class="left-service">
+                    <p><%= service1 %></p>
+                </div>
+                <div class="right-service">
+                    <p><%= service2 %></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="team">
+            <h4>TEAM</h4>
+            <div class="team-box">
+                <div class="left-team">
+                    <% team1.forEach(member => { %>
+                        <p><%= member %></p>
+                    <% }); %>
+                </div>
+                <div class="right-team">
+                    <% team2.forEach(member => { %>
+                        <p><%= member %></p>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+  
+  
+
+ <div class="banner">
+    <img src="../images/three4.jpg" alt="">
+  </div>
+
+
+  <div class="description">
+    <div class="description-box">
+      <div class="description-heading">
+        THE PROBLEM
+      </div>
+      <div class="description-details">
+        <p><%= details1 %></p>
+
+      </div>
+    </div>
+    <div class="description-box">
+      <div class="description-heading">GOAL</div>
+      <div class="description-details">
+        <p><%= details2 %></p>
+  
+      </div>
+    </div>
+    <div class="description-box">
+      <div class="description-heading">THE SOLUTION</div>
+      <div class="description-details">
+        <p><%= details3 %></p>
+       
+      </div>
+    </div>
+  </div> 
+
+  <div class="section-heading">
+    <h3>Projects Spotlight</h3>
+    <div class="underline">
+       <h1>OUR WORK IN FOCUS</h1>
+    </div>
+ </div>
+  <div class="board">
+    
+    <div class="cards-row">
+      <div class="card">
+        <img src="../images/three1.jpg" alt="">
+      </div>
+      <div class="card">
+        <img src="../images/three2.jpg" alt="">
+      </div>
+      <div class="card">
+        <img src="../images/three3.jpg" alt="">
+      </div>
+      <div class="card">
+        <img src="../images/three4.jpg" alt="">
+      </div>
+      <div class="card">
+        <img src="../images/three5.jpg" alt="">
+      </div>
+    </div>
+  </div>
+  <!--End of Board Section  -->
+
+
+  <!-- Start Footer Section -->
+  <footer>
+    <div class="content">
+      <!-- Start Footer Top Part -->
+      <div class="bottom">
+        <!-- Start Logo Details -->
+        <div class="logo-details">
+          <img src="../images/logo1.jpg" alt="">
+          <span class="logo_name">ByteTabs</span>
+        </div>
+        <!-- End Logo Details -->
+        <!-- Start Social Media Icon Section -->
+        <div class="media-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-telegram"></i></a>
+        </div>
+        <!-- End Social Media Icon Section -->
+      </div>
+      <!-- End Footer Top Part -->
+
+      <hr>
+
+      <!-- Start Footer Body -->
+      <div class="link-boxes">
+        <!-- Start Menu Section-->
+        <ul class="box box1">
+          <li class="link_name">Menu</li>
+          <li><a href="../index">Home</a></li>
+          <li><a href="/about">About us</a></li>
+          <li><a href="/service">Services</a></li>
+          <li><a href="/hire">Hiring</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
+        <!-- End Menu Section-->
+
+        <!-- Start Service Section-->
+        <ul class="box box2">
+          <li class="link_name">Services</li>
+          <li><a href="#">Website Design</a></li>
+          <li><a href="#">Graphic Design</a></li>
+          <li><a href="#">Product Modeling</a></li>
+          <li><a href="#">Software Development</a></li>
+          <li><a href="#">Software Testing</a></li>
+          <li><a href="#">Social Media Handling </a></li>
+        </ul>
+        <!-- End Service Section-->
+
+        <!-- Start Address Section-->
+        <ul class="box box3">
+          <li class="link_name">Address</li>
+          <li><a href="#">Part 1, A71, Abul Fazal Enclave,</a></li>
+          <li><a href="#">Jamia Nagar, Okhla, New Delhi</a></li>
+          <li><a href="#">Delhi,110025</a></li>
+        </ul>
+        <!-- End Address Section-->
+
+        <!-- Start Image Section-->
+        <ul class="box input-box">
+          <!-- Start Image Slider -->
+          <div class="ads">
+            <div class="images">
+              <img src="../images/a1.jpg">
+              <img src="../images/a2.jpg">
+              <img src="../images/a3.jpg">
+              <img src="../images/a4.jpg">
+              <img src="../images/a5.jpg">
+              <img src="../images/a6.jpg">
+              <img src="../images/a7.jpg">
+              <img src="../images/a8.jpg">
+              <img src="../images/a9.jpg">
+              <img src="../images/a10.jpg">
+            </div>
+          </div>
+          <!-- Start Image Slider -->
+        </ul>
+        <!-- End Image Section-->
+      </div>
+      <!-- End Footer Body -->
+    </div>
+
+
+    <!-- Start Footer bottom Part -->
+    <div class="footer-txt">
+      <div class="footer-txt-content">
+        <!-- Start Footer bottom  Left Part -->
+        <div class="policy_terms">
+          <h4>Privacy Policy</h4>
+          <h4>Terms & Conditions</h4>
+        </div>
+        <!-- End Footer bottom  Left Part -->
+        <!-- Start Footer bottom  Right Part -->
+        <div class="copyright_text">
+          <h4>Copyright ©2024 ByteTabs. </h4>
+          <h4>All rights reserved.</span></h4>
+        </div>
+        <!-- End Footer bottom  Right Part -->
+      </div>
+    </div>
+    <!-- End Footer bottom Part -->
+  </footer>
+  <!-- End Footer Sectiion -->
+
+
+
+  <!-- JavaScript FIle Link -->
+  <script src="../javascripts/abc.js"></script>
+
+</body>
+
+</html>
