@@ -66,9 +66,62 @@ function openNav() {
 
 
   
-// Pre-Loader 
+// Start Pre-Loader 
 
 var loader=document.getElementById("preloader");
 window.addEventListener("load",function(){
   loader.style.display="none";
 })
+
+//End Pre-Loader
+
+
+
+
+// JavaScript for Number counter animation 
+
+
+const counters = document.querySelectorAll('.counter');
+const durations = [150, 80, 120, 100];
+
+// Function to update the count
+const updateCount = (counter, target, increment) => {
+    let count = 0;
+    const increaseCount = () => {
+        count += increment;
+        counter.innerText = Math.ceil(count) + '+';
+        if (count < target) {
+            requestAnimationFrame(increaseCount);
+        } else {
+            counter.innerText = target + '+';
+        }
+    };
+    increaseCount();
+};
+
+// Intersection Observer callback
+const onEntry = (entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = +counter.getAttribute('data-target');
+            const index = Array.from(counters).indexOf(counter);
+            const increment = target / durations[index];
+            updateCount(counter, target, increment);
+            observer.unobserve(counter); // Stop observing after animation
+        }
+    });
+};
+
+//Intersection observer instance
+const observer = new IntersectionObserver(onEntry, {
+    threshold: 0.5 // Trigger when 50% of the element is visible
+});
+
+// Observe each counter
+counters.forEach(counter => {
+    observer.observe(counter);
+});
+
+
+//End JavaScript for Number counter animation 
