@@ -125,3 +125,53 @@ counters.forEach(counter => {
 
 
 //End JavaScript for Number counter animation 
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const navbarLinks = document.querySelectorAll(".nav-link");
+  const footerLinks = document.querySelectorAll(".box2 a");
+  const contentItems = document.querySelectorAll(".content-item");
+
+  navbarLinks.forEach(link => {
+      link.addEventListener("click", function (event) {
+          event.preventDefault();
+          const targetCategories = this.getAttribute("data-target").split(" ");
+          contentItems.forEach(item => {
+              const itemCategories = item.classList;
+              if (targetCategories.includes("all") || targetCategories.some(category => itemCategories.contains(category))) {
+                  item.style.display = "block";
+              } else {
+                  item.style.display = "none";
+              }
+          });
+
+          const targetId = this.getAttribute("href").substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+              targetElement.scrollIntoView({ behavior: "smooth" });
+          }
+      });
+  });
+
+  footerLinks.forEach(link => {
+      link.addEventListener("click", function (event) {
+          event.preventDefault();
+          const targetId = this.getAttribute("href").substring(1);
+          contentItems.forEach(item => {
+              if (item.classList.contains(targetId)) {
+                  item.style.display = "block";
+              } else {
+                  item.style.display = "none";
+              }
+          });
+      });
+  });
+});
+
+
+
