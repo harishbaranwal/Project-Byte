@@ -1,157 +1,148 @@
-if (process.env.NODE_ENV != "production") {
-  require('dotenv').config();
-}
-
-
-const express = require('express')
-var bodyParser = require("body-parser")
-var mongoose = require("mongoose")
-
-const app = express()
-const path = require('path');
-const multer = require('multer');
 
 
 
-const { storage } = require("./cloudConfig.js");
-const upload = multer({ storage });
+                        if (process.env.NODE_ENV != "production") {
+                          require('dotenv').config();
+                        }
+
+                        const express = require('express')
+                        var bodyParser = require("body-parser")
+                        var mongoose = require("mongoose")
+                        const app = express()
+                        const path = require('path');
+                        const multer = require('multer');
+                        const { storage } = require("./cloudConfig.js");
+                        const upload = multer({ storage });
 
 
-app.use(bodyParser.json())
-app.set("view engine", "ejs");
-app.use(express.static('./public'));
-
-
-
-
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
-
-app.get('/', function (req, res) {
-  res.render("index");
-})
-app.get('/index', function (req, res) {
-  res.render("index");
-})
-
-
-app.get('/contact', function (req, res) {
-  res.render("contact");
-})
-app.get('/blog', function (req, res) {
-  res.render("blog");
-})
-
-app.get('/service', function (req, res) {
-  res.render("service");
-})
-app.get('/about', function (req, res) {
-  res.render("about");
-})
-app.get('/hire', function (req, res) {
-  res.render("hire");
-})
-app.get('/apply', function (req, res) {
-  res.render("apply");
-})
-
-const dbUrl = process.env.ATLASDB_URL;
-mongoose.connect(dbUrl)
+                        app.use(bodyParser.json())
+                        app.set("view engine", "ejs");
+                        app.use(express.static('./public'));
+                        app.use(bodyParser.urlencoded({
+                          extended: true
+                        }))
 
 
 
-var db = mongoose.connection
-db.on('error', () => console.log("Error in Connecting to Database"))
-db.once('open', () => console.log("Connected to Database"))
+                        app.get('/', function (req, res) {
+                          res.render("index");
+                        })
 
-app.post("/msg_received", (req, res) => {
-  var name = req.body.name
-  var email = req.body.email
-  var address = req.body.address
-  var phno = req.body.phno
-  var subject = req.body.subject
-  var description = req.body.description
+                        app.get('/index', function (req, res) {
+                          res.render("index");
+                        })
 
-  var data = {
-    "name": name,
-    "address": address,
-    "email": email,
-    "phno": phno,
-    "subject": subject,
-    "description": description
-  }
+                        app.get('/contact', function (req, res) {
+                          res.render("contact");
+                        })
+                        app.get('/blog', function (req, res) {
+                          res.render("blog");
+                        })
 
-  db.collection('contact-form').insertOne(data, (err, result) => {
-    if (err) {
-      console.error('Error inserting data:', err);
-      return res.status(500).send('Error inserting data');
-    }
-    console.log("Record Inserted Successfully");
+                        app.get('/service', function (req, res) {
+                          res.render("service");
+                        })
+                        app.get('/about', function (req, res) {
+                          res.render("about");
+                        })
+                        app.get('/hire', function (req, res) {
+                          res.render("hire");
+                        })
+                        app.get('/apply', function (req, res) {
+                          res.render("apply");
+                        })
 
-  });
-  //  Vipin Whatsapp code
-  return res.render('contact', {
-    flag: true
-    // currentUrl: currentUrl
-  });
+                        const dbUrl = process.env.ATLASDB_URL;
+                        mongoose.connect(dbUrl)
 
-});
+                        var db = mongoose.connection
+                        db.on('error', () => console.log("Error in Connecting to Database"))
+                        db.once('open', () => console.log("Connected to Database"))
 
 
-
-app.post("/form_submitted", upload.single('file'), (req, res) => {
-  var fname = req.body.first_name
-  var lname = req.body.last_name
-  var email = req.body.email
-  var phone = req.body.phone
-  var job_role = req.body.job_rol;
-  var portfolio_link = req.body.link
-  var address = req.body.address
-  var city = req.body.city
-  var pin = req.body.pin
-  var cv_file = req.file;
-
-  var data = {
-    "fname": fname,
-    "lname": lname,
-    "email": email,
-    "phone": phone,
-    "job_role": job_role,
-    "portfolio": portfolio_link,
-    "address": address,
-    "city": city,
-    "pin": pin,
-    "cv_file": cv_file
-  }
-
-  db.collection('apply-form').insertOne(data, (err, result) => {
-    if (err) {
-      console.error('Error inserting data:', err);
-      return res.status(500).send('Error inserting data');
-    }
-    console.log("Record Inserted Successfully");
-
-  });
-
-  return res.render('apply', {
-    flag: true
-
-  });
-});
+                        app.listen(process.env.PORT, () => {
+                          console.log("Server is running on port 3002");
+                        });
 
 
-app.get("/", (req, res) => {
-  res.set({
-    "Access-Control-Allow-Origin": '*'
-  })
-  return res.render('contact')
-});
 
 
-app.listen(process.env.PORT, () => {
-  console.log("Server is running on port 3002");
-});
+
+
+
+
+
+
+
+                      app.post("/msg_received", (req, res) => {
+                        var name = req.body.name
+                        var email = req.body.email
+                        var address = req.body.address
+                        var phno = req.body.phno
+                        var subject = req.body.subject
+                        var description = req.body.description
+
+                        var data = {
+                          "name": name,
+                          "address": address,
+                          "email": email,
+                          "phno": phno,
+                          "subject": subject,
+                          "description": description
+                        }
+
+                        db.collection('contact-form').insertOne(data, (err, result) => {
+                          if (err) {
+                            console.error('Error inserting data:', err);
+                            return res.status(500).send('Error inserting data');
+                          }
+                          console.log("Record Inserted Successfully");
+
+                        });
+                        return res.render('contact', {
+                          flag: true
+                        });
+                      });
+
+
+
+                      app.post("/form_submitted", upload.single('file'), (req, res) => {
+                        var fname = req.body.first_name
+                        var lname = req.body.last_name
+                        var email = req.body.email
+                        var phone = req.body.phone
+                        var job_role = req.body.job_rol;
+                        var portfolio_link = req.body.link
+                        var address = req.body.address
+                        var city = req.body.city
+                        var pin = req.body.pin
+                        var cv_file = req.file;
+
+                        var data = {
+                          "fname": fname,
+                          "lname": lname,
+                          "email": email,
+                          "phone": phone,
+                          "job_role": job_role,
+                          "portfolio": portfolio_link,
+                          "address": address,
+                          "city": city,
+                          "pin": pin,
+                          "cv_file": cv_file
+                        }
+
+                        db.collection('apply-form').insertOne(data, (err, result) => {
+                          if (err) {
+                            console.error('Error inserting data:', err);
+                            return res.status(500).send('Error inserting data');
+                          }
+                          console.log("Record Inserted Successfully");
+                        });
+
+                        return res.render('apply', {
+                          flag: true
+                        });
+                      });
 
 
 
@@ -321,6 +312,88 @@ app.get('/Work/:content', function (req, res) {
       details3: "Impart information that our audience might often get wrong amidst all the confusion regarding mental health and self-care in the modern world. Positioning ourselves as a one-of-a-kind holistic wellness center with flexible schedules and a supportive community was our top priority to meet the challenges faced by The Self Center.",
     };
   }
+  else if (content === 'm') {
+    data = {
+      title: 'Shimona',
+      description: 'A holistic life coaching, mindfulness, and wellness studio based in Gurgaon with a need to bring awareness about self care to as many people as they can with a goal to help people reach their ultimate potential.',
+      service1: 'Video Editing',
+      service2: 'Website Design',
+      team1: ['Aman', 'Riya Singh', 'Mahesh Pratap'],
+      team2: ['Akash Mani', 'Rajkumar'],
+      details1: "The Self Center, a holistic life coaching page targeting a slightly premium audience, faced the challenge of carving a unique space in the competitive life coaching industry. While there is a growing demand for life coaching services, the market is saturated with numerous providers offering similar services. The Self Center needed to differentiate itself and establish a distinctive identity that would resonate with its target audience.",
+      details2: "Clearly communicate the uniqueness of their approach and the value they bring to their clients as a one-of-a-kind life coaching platform.",
+      details3: "Impart information that our audience might often get wrong amidst all the confusion regarding mental health and self-care in the modern world. Positioning ourselves as a one-of-a-kind holistic wellness center with flexible schedules and a supportive community was our top priority to meet the challenges faced by The Self Center.",
+    };
+  }
+  else if (content === 'n') {
+    data = {
+      title: 'AIRE',
+      description: 'A handmade agriculture-based brand, with their primary shelf consisting of pickles and chutneys as a celebration for recipes that have been passed down for generations.',
+      service1: 'Video Editing',
+      service2: 'Website Design',
+      team1: ['Aman', 'Riya Singh', 'Mahesh Pratap'],
+      team2: ['Akash Mani', 'Rajkumar'],
+      details1: "Cordet, a subdivision of IFFCO was hoping to find a market for its new handmade agriculture-based products. The goal was 2 fold, on one hand, they wanted to uplift and empower women in the rural sector, on the other they wanted to preserve the old forgotten recipes of India.",
+      details2: "Makin sure the brand they launch is successful in the metros with a modern touch to old forgotten recipes.",
+      details3: "Highlighting the journey from rural kitchens to urban shelves, the branding celebrated the diverse flavors and traditions that encompassed Indian cuisine. The packaging design played a crucial role in capturing the essence of 'Lost Recipes.' Using traditional patterns and illustrations inspired by Indian folk art, attracting the attention of consumers seeking unique and culturally enriched products. The use of earthy and natural tones reflected the handmade nature of the products and their agricultural origins.",
+    };
+  }
+  else if (content === 'o') {
+    data = {
+      title: 'Begam',
+      description: 'A holistic life coaching, mindfulness, and wellness studio based in Gurgaon with a need to bring awareness about self care to as many people as they can with a goal to help people reach their ultimate potential.',
+      service1: 'Video Editing',
+      service2: 'Website Design',
+      team1: ['Aman', 'Riya Singh', 'Mahesh Pratap'],
+      team2: ['Akash Mani', 'Rajkumar'],
+      details1: "The Self Center, a holistic life coaching page targeting a slightly premium audience, faced the challenge of carving a unique space in the competitive life coaching industry. While there is a growing demand for life coaching services, the market is saturated with numerous providers offering similar services. The Self Center needed to differentiate itself and establish a distinctive identity that would resonate with its target audience.",
+      details2: "Clearly communicate the uniqueness of their approach and the value they bring to their clients as a one-of-a-kind life coaching platform.",
+      details3: "",
+    };
+  }
+
+  else if (content === 'p') {
+    data = {
+      title: 'THREE KINGS',
+      description: 'It’s no secret that the hype culture in India is on the rise, and with hype culture, comes a sneakerhead community that is truly, madly dedicated to this one thing they love to wear, protect and collect: Sneakers. Three KIngs, a platform with a dedicated team of individuals with love and passion for sneakers, aims to spread and infuse this culture into every street of India.',
+      service1: 'Video Editing',
+      service2: 'Website Design',
+      team1: ['Aman', 'Riya Singh', 'Mahesh Pratap'],
+      team2: ['Akash Mani', 'Rajkumar'],
+      details1: "In a crowded market, where a lot of huge players are already doing phenomenal business, the main challenge for Three Kings was to stand out. Being a new brand, it was essential for them to reach the right audience at the right time to be able to compete with established brands by leveraging social media to their advantage while staying true to their core passion.",
+      details2: "Our objective was to elevate Three Kings brand presence on social media platforms, cultivate a loyal community of sneaker enthusiasts, and position the brand as the go-to destination for exclusive sneaker releases in India.",
+      details3: "A market where it’s all about selling and reselling, offers and drops, a true weapon in our favour was truly leveraging the love and passion for the culture. With our social media posts, we aimed to give every sneaker an identity of their own, while keeping a holistic language for the entire brand.",
+    };
+  }
+  else if (content === 'q') {
+    data = {
+      title: 'LOST RECIPIES',
+      description: 'A handmade agriculture-based brand, with their primary shelf consisting of pickles and chutneys as a celebration for recipes that have been passed down for generations.',
+      service1: 'Video Editing',
+      service2: 'Website Design',
+      team1: ['Aman', 'Riya Singh', 'Mahesh Pratap'],
+      team2: ['Akash Mani', 'Rajkumar'],
+      details1: "Cordet, a subdivision of IFFCO was hoping to find a market for its new handmade agriculture-based products. The goal was 2 fold, on one hand, they wanted to uplift and empower women in the rural sector, on the other they wanted to preserve the old forgotten recipes of India.",
+      details2: "Makin sure the brand they launch is successful in the metros with a modern touch to old forgotten recipes.",
+      details3: "Highlighting the journey from rural kitchens to urban shelves, the branding celebrated the diverse flavors and traditions that encompassed Indian cuisine. The packaging design played a crucial role in capturing the essence of 'Lost Recipes.' Using traditional patterns and illustrations inspired by Indian folk art, attracting the attention of consumers seeking unique and culturally enriched products. The use of earthy and natural tones reflected the handmade nature of the products and their agricultural origins.",
+    };
+  }
+
+  else if (content === 'r') {
+    data = {
+      title: 'GREEN GRATITUDE',
+      description: 'An ecommerce platform, with sustainable and earth-friendly products offered on the platform. Currently, in their awareness phase on Instagram, Green Gratitude strives to bring a change by spreading education about sustainability unlike any other platform.',
+      service1: 'Video Editing',
+      service2: 'Website Design',
+      team1: ['Yatin Savlani', 'Riya Singh', 'Harsh Gupta'],
+      team2: ['Akash Mani', 'Rajkumar'],
+      details1: "Green Gratitude, a sustainable e-commerce platform, faces the challenge of establishing its presence and gaining recognition in a competitive market. As a brand that is yet to release its products, it needs to find a way to engage with its target audience and build anticipation for its sustainable platform.",
+      details2: "Creating a marketing strategy that not only generates buzz around the upcoming launch but also resonates with potential customers, highlighting the brand's values and mission.",
+      details3: "Instagram's visual nature provides an opportunity to showcase the eco-friendly materials and practices used in the products. Another effective approach was to collaborate with eco-conscious brands that align with Green Gratitude's values to capture the attention of sustainable brands in the market as a way of teasing the e-commerce platform. To educate and inspire followers, we also created informative content on sustainable living, eco-friendly tips, and the importance of making conscious choices in everyday life.",
+    };
+  }
+
+
 
   res.render("work", data);
 });
